@@ -1,0 +1,16 @@
+Raj Patel
+Full Stack Developer
+raj.patel@example.com
+
+SUMMARY
+Full stack developer comfortable across the JavaScript stack.
+
+SKILLS
+JavaScript, TypeScript, React, Node.js, MongoDB
+
+EXPERIENCE
+- Full Stack Dev, WebScale (2021-present): React + Node microservices.
+- Frontend Dev, Pixel Labs (2019-2021): built design-system components.
+
+EDUCATION
+B.E. Information Technology, City College, 2019

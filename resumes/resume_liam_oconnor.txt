@@ -1,0 +1,16 @@
+Liam O'Connor
+DevOps Engineer
+liam.oconnor@example.com
+
+SUMMARY
+DevOps engineer focused on CI/CD and observability.
+
+SKILLS
+Terraform, AWS, Docker, Kubernetes, Python, Go
+
+EXPERIENCE
+- DevOps Engineer, ShipFast (2019-present): built GitOps pipelines.
+- SysAdmin, HostCo (2016-2019): managed Linux fleets.
+
+EDUCATION
+B.S. Computer Engineering, Harbor University, 2016

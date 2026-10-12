@@ -1,0 +1,16 @@
+Emma Wilson
+Engineering Manager
+emma.wilson@example.com
+
+SUMMARY
+Engineering manager who grew teams from 3 to 20.
+
+SKILLS
+Leadership, Python, System Design, Hiring, Mentoring
+
+EXPERIENCE
+- Engineering Manager, ScaleUp (2018-present): led 4 squads.
+- Tech Lead, BuildIt (2015-2018): Python backend architecture.
+
+EDUCATION
+B.S. Computer Science, Lakeside University, 2015
