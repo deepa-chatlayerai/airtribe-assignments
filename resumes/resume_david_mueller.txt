@@ -1,0 +1,16 @@
+David Mueller
+Security Engineer
+david.mueller@example.com
+
+SUMMARY
+Security engineer with a focus on application security.
+
+SKILLS
+Python, Threat Modeling, Burp Suite, AWS, Go
+
+EXPERIENCE
+- Security Engineer, SafeGuard (2019-present): ran the AppSec program.
+- Pentester, RedTeam Co (2017-2019): web and API assessments.
+
+EDUCATION
+B.S. Cybersecurity, Fort University, 2017

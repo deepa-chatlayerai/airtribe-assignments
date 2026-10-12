@@ -1,0 +1,16 @@
+Maria Garcia
+Machine Learning Engineer
+maria.garcia@example.com
+
+SUMMARY
+ML engineer deploying models to production at scale.
+
+SKILLS
+Python, TensorFlow, Kubernetes, GCP, Airflow
+
+EXPERIENCE
+- ML Engineer, VisionAI (2020-present): real-time inference in Python.
+- Software Engineer, CloudNine (2017-2020): data pipelines on GCP.
+
+EDUCATION
+M.S. Computer Science, Mountain University, 2017

@@ -1,0 +1,8 @@
+# Runtime
+anthropic>=0.40.0      # Claude API client (tool use / function calling)
+openai>=1.40.0         # used by the OpenRouter runner (OpenAI-compatible API)
+pypdf>=4.0.0           # read .pdf resumes
+python-docx>=1.1.0     # read/write .docx resumes
+
+# Sample-data generation only (generate_samples.py)
+fpdf2>=2.7.0           # create sample .pdf resumes

@@ -1,0 +1,99 @@
+# LLM File Assistant
+
+A small Python project demonstrating **LLM function calling / tool use**: Claude
+is given a set of file-system tools and decides which to call to satisfy a
+natural-language request about resume files.
+
+## What's here
+
+| File | Purpose |
+|---|---|
+| `fs_tools.py` | Part A — four file-system tools with structured responses and graceful error handling. |
+| `llm_file_assistant.py` | Part B — wires the tools to Claude (Anthropic SDK) via tool use and runs an agentic loop. |
+| `llm_file_assistant_openrouter.py` | Part B, OpenRouter variant — same loop over the OpenAI-compatible API (reuses the same tools). |
+| `generate_samples.py` | Creates 10 dummy resumes (TXT / DOCX / PDF) in `./resumes`. |
+| `requirements.txt` | Dependencies. |
+
+## Part A — File system tools (`fs_tools.py`)
+
+Each tool returns a JSON-serializable value so results can be handed straight
+back to the LLM. Errors are returned in the payload, never raised.
+
+- `read_file(filepath)` → `dict` — reads **PDF / TXT / DOCX**, extracts text,
+  returns `{success, content, metadata, error}`.
+- `list_files(directory, extension=None)` → `list` — lists files with metadata
+  (name, size, modified date); optional extension filter.
+- `write_file(filepath, content)` → `dict` — writes content, creating parent
+  directories; returns `{success, bytes_written, error}`.
+- `search_in_file(filepath, keyword)` → `dict` — case-insensitive search with
+  surrounding context and line numbers.
+
+## Part B — LLM integration (`llm_file_assistant.py`)
+
+- Defines the four tools as Claude tool schemas and maps them to `fs_tools`.
+- Runs a **manual agentic loop**: call the model → execute requested tools →
+  feed results back → repeat until the model returns a final answer.
+- Uses model `claude-opus-4-8`.
+
+Example queries:
+
+- "Read all resumes in the resumes folder"
+- "Find resumes mentioning Python experience"
+- "Create a summary file for resume_john_doe.pdf"
+
+## Setup
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# Generate the sample resumes
+python generate_samples.py
+
+# Authenticate (either one):
+export ANTHROPIC_API_KEY=sk-ant-...
+# or: ant auth login
+```
+
+## Usage
+
+```bash
+# One-shot
+python llm_file_assistant.py "Find resumes mentioning Python experience"
+
+# Interactive REPL
+python llm_file_assistant.py
+```
+
+### Running via OpenRouter (OpenAI-compatible)
+
+OpenRouter serves the OpenAI chat-completions format, so use the OpenRouter
+runner (not the Anthropic one):
+
+```bash
+echo 'OPENROUTER_API_KEY=sk-or-...' > .env      # gitignored
+# optional: OPENROUTER_MODEL=anthropic/claude-sonnet-4.5  (default)
+
+python llm_file_assistant_openrouter.py "Find resumes mentioning Python experience"
+```
+
+The assistant prints each tool call and its final answer, so you can watch the
+tool-calling in action.
+
+### Using the tools directly (no LLM)
+
+```python
+import fs_tools
+
+fs_tools.list_files("resumes", ".pdf")
+fs_tools.read_file("resumes/resume_john_doe.pdf")
+fs_tools.search_in_file("resumes/resume_jane_smith.docx", "Python")
+fs_tools.write_file("out/summary.txt", "hello")
+```
+
+## Notes
+
+- `read_file` supports `.txt`, `.md`, `.pdf`, `.docx`. Unsupported types return
+  an error in the response rather than raising.
+- `fpdf2` is only needed to (re)generate the sample PDFs; the assistant itself
+  needs just `anthropic`, `pypdf`, and `python-docx`.

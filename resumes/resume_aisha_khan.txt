@@ -1,0 +1,16 @@
+Aisha Khan
+Product Manager
+aisha.khan@example.com
+
+SUMMARY
+Technical PM bridging engineering and business teams.
+
+SKILLS
+Roadmapping, SQL, Figma, Analytics, A/B Testing
+
+EXPERIENCE
+- Senior PM, GrowthLabs (2020-present): owned a $5M product line.
+- PM, StartupXYZ (2018-2020): launched mobile app to 1M users.
+
+EDUCATION
+MBA, Business School, 2018
