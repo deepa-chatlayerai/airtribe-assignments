@@ -72,10 +72,16 @@ runner (not the Anthropic one):
 
 ```bash
 echo 'OPENROUTER_API_KEY=sk-or-...' > .env      # gitignored
-# optional: OPENROUTER_MODEL=anthropic/claude-sonnet-4.5  (default)
+# optional overrides:
+#   OPENROUTER_MODEL=anthropic/claude-sonnet-4.5   (default)
+#   OPENROUTER_MAX_TOKENS=1024                      (per-response cap; default)
 
 python llm_file_assistant_openrouter.py "Find resumes mentioning Python experience"
 ```
+
+Any OpenRouter model that supports tool calling works — including free ones
+(e.g. `OPENROUTER_MODEL=nvidia/nemotron-3-super-120b-a12b:free`), which avoids
+spending credits.
 
 The assistant prints each tool call and its final answer, so you can watch the
 tool-calling in action.

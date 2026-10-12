@@ -28,6 +28,7 @@ from llm_file_assistant import SYSTEM_PROMPT, TOOLS, _run_tool
 
 BASE_URL = "https://openrouter.ai/api/v1"
 DEFAULT_MODEL = "anthropic/claude-sonnet-4.5"
+MAX_TOKENS = int(os.environ.get("OPENROUTER_MAX_TOKENS", "1024"))
 MAX_ITERATIONS = 25
 
 
@@ -75,6 +76,7 @@ def run_query(client: OpenAI, model: str, user_query: str, verbose: bool = True)
             messages=messages,
             tools=OPENAI_TOOLS,
             tool_choice="auto",
+            max_tokens=MAX_TOKENS,
         )
         message = response.choices[0].message
 
