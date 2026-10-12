@@ -12,15 +12,12 @@ timestamps so the cast plays back with clean pacing regardless of terminal/TTY.
 import json
 
 COLS, ROWS = 100, 32
-events = []       # (time, "o", text)
-t = 0.0
+events = []       # [interval, "o", text] — asciinema v3 uses RELATIVE timing
 
 
 def emit(text: str, dt: float = 0.05) -> None:
-    """Advance the clock by dt, then output one line (CRLF for the terminal)."""
-    global t
-    t += dt
-    events.append([round(t, 3), "o", text + "\r\n"])
+    """Output one line after waiting dt seconds (CRLF for the terminal)."""
+    events.append([round(dt, 3), "o", text + "\r\n"])
 
 
 def banner(title: str, dt: float = 1.6) -> None:
@@ -137,4 +134,5 @@ with open("demo/demo.cast", "w", encoding="utf-8") as out:
     for ev in events:
         out.write(json.dumps(ev) + "\n")
 
-print(f"wrote demo/demo.cast ({len(events)} events, {events[-1][0]:.1f}s)")
+total = sum(ev[0] for ev in events)
+print(f"wrote demo/demo.cast ({len(events)} events, {total:.1f}s)")
